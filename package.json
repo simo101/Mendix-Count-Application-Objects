@@ -1,0 +1,29 @@
+{
+  "name": "Mendix-Count-Application-Objects",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simo101/Mendix-Count-Application-Objects.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simo101/Mendix-Count-Application-Objects/issues"
+  },
+  "homepage": "https://github.com/simo101/Mendix-Count-Application-Objects",
+  "dependencies": {
+    "mendixmodelsdk": "^4.3.0",
+    "mendixplatformsdk": "^4.0.0",
+    "when": "^3.7.8",
+    "@types/when": "2.4.29",
+    "node": "^0.0.0",
+    "fs": "^0.0.2",
+    "officegen": "0.4.0"
+  }
+}
