@@ -3,20 +3,25 @@
 'use strict';
 
 import { MendixSdkClient, OnlineWorkingCopy, Project, Revision, Branch, loadAsPromise } from "mendixplatformsdk";
-import { ModelSdkClient, IModel, projects, domainmodels, microflows, pages, navigation, texts, security, IStructure, menus } from "mendixmodelsdk";
+import { ModelSdkClient, IModel, Model, projects, domainmodels, microflows, pages, navigation, texts, security, IStructure, menus } from "mendixmodelsdk";
 
 
 import when = require('when');
 
 
 const username = "{{Username}}";
-const apikey = "{{ApiKey}}";
-const projectId = "{{ProjectID}}";
-const projectName = "{{ProjectName}}";
+const apikey = "{{apikey}}";
+const projectName = "{{projectname}}";
 const revNo = -1; // -1 for latest
 const branchName = null // null for mainline
 const wc = null;
-const client = new MendixSdkClient(username, apikey);
+
+const client = Model.createSdkClient({
+    credentials: {
+        username: username,
+		apikey: apikey
+    }
+});
 var officegen = require('officegen');
 var docx = officegen('docx');
 var fs = require('fs');
@@ -27,15 +32,19 @@ var totalNumberEntities = 0;
 /*
  * PROJECT TO ANALYZE
  */
-const project = new Project(client, projectId, projectName);
 
-client.platform().createOnlineWorkingCopy(project, new Revision(revNo, new Branch(project, branchName)))
-    .then(workingCopy => {
+const wcParams = {
+    name: projectName,
+    description: "My MPK app",
+    template: "mpk/{{APPMPK}}.mpk"
+};
+
+client.createAndOpenWorkingCopy(wcParams,model =>{
         pObj = docx.createP();
         pObj.addText(projectName, { bold: true, underline: true, font_size: 20 });
         pObj.addLineBreak();
         pObj.addLineBreak();
-        workingCopy.model().allDomainModels().forEach(domainModel => {
+        model.allDomainModels().forEach(domainModel => {
             pObj.addText(getModule(domainModel).name, { bold: true, underline: true, font_size: 18 });
             pObj.addLineBreak();
 
@@ -43,14 +52,14 @@ client.platform().createOnlineWorkingCopy(project, new Revision(revNo, new Branc
             pObj.addText(`Total Entities: ${domainModel.entities.length}`, { bold: false, underline: false, font_size: 15 });
             pObj.addLineBreak();
 
-            var totalPages = workingCopy.model().allPages().filter(page => {
+            var totalPages = model.allPages().filter(page => {
                 return getModule(page).name === getModule(domainModel).name;
             });
             totalNumberPages+= totalPages.length;
             pObj.addText(`Total Pages: ${totalPages.length}`, { bold: false, underline: false, font_size: 15 });
 
             pObj.addLineBreak();
-            var microflows = workingCopy.model().allMicroflows().filter(microflow => {
+            var microflows = model.allMicroflows().filter(microflow => {
                 return getModule(microflow).name === getModule(domainModel).name;
             });
             totalNumberMicroflows+= microflows.length;
@@ -69,22 +78,17 @@ client.platform().createOnlineWorkingCopy(project, new Revision(revNo, new Branc
         pObj.addText(`Total Microflows: ${totalNumberMicroflows}`, { bold: false, underline: false, font_size: 15 });
         pObj.addLineBreak();
         pObj.addText(`Total Entities: ${totalNumberEntities}`, { bold: false, underline: false, font_size: 15 });
-        
-        return;
-    })
-    .done(
-    () => {
         var out = fs.createWriteStream(`${projectName} Application Counts.docx`);
         docx.generate(out);
         out.on('close', function () {
             console.log('Finished to creating Document');
         });
+        return;
     },
     error => {
         console.log("Something went wrong:");
         console.dir(error);
-    }
-    );
+    });
     export function getModule(element: IStructure): projects.Module {
         let current = element.unit;
         while (current) {
