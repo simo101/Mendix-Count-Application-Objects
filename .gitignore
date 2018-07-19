@@ -1,5 +1,7 @@
 node_modules/
 typings/
 script.js
+total-number-objects.js
+script-using-mpk.js
 *nbproject
 .vscode/
