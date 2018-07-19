@@ -10,7 +10,7 @@ import when = require('when');
 
 
 const username = "{{Username}}";
-const apikey = "{{ApiKey}}";
+const apikey = "{{APIKey}}";
 const projectId = "{{ProjectID}}";
 const projectName = "{{ProjectName}}";
 const revNo = -1; // -1 for latest

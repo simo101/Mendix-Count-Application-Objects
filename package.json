@@ -18,12 +18,15 @@
   },
   "homepage": "https://github.com/simo101/Mendix-Count-Application-Objects",
   "dependencies": {
-    "mendixmodelsdk": "^4.3.0",
+    "@types/when": "^2.4.31",
+    "mendixmodelsdk": "^4.11.0",
     "mendixplatformsdk": "^4.0.0",
     "when": "^3.7.8",
-    "@types/when": "2.4.29",
-    "node": "^0.0.0",
     "fs": "^0.0.2",
+    "json2xls": "^0.1.2",
     "officegen": "0.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.3.3"
   }
 }

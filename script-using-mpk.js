@@ -2,9 +2,9 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 var mendixmodelsdk_1 = require("mendixmodelsdk");
-var username = "{{Username}}";
-var apikey = "{{apikey}}";
-var projectName = "{{projectname}}";
+var username = "simon.black@mendix.com";
+var apikey = "f85f8578-e20d-432c-9682-4e5685268125";
+var projectName = "Zurich Project STAG";
 var revNo = -1; // -1 for latest
 var branchName = null; // null for mainline
 var wc = null;
@@ -27,7 +27,7 @@ var totalNumberEntities = 0;
 var wcParams = {
     name: projectName,
     description: "My MPK app",
-    template: "mpk/Customer_Portal___550.mpk"
+    template: "mpk/Project_STAG.mpk"
 };
 client.createAndOpenWorkingCopy(wcParams, function (model) {
     pObj = docx.createP();

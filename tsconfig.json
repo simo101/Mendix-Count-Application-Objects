@@ -1,10 +1,11 @@
 {
-	"compilerOptions": {
-		"module": "commonjs",
-		"target": "es5"
-	},
-	"files": [
-		"script.ts",
-		"script-using-mpk.ts"
-	]
+  "compilerOptions" : {
+      "module" : "commonjs",
+      "target" : "es6",
+      "strict": true,
+      "strictNullChecks": false
+  },
+  "files" : [
+      "total-number-objects.ts"
+  ]
 }

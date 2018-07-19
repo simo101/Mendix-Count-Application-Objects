@@ -10,8 +10,9 @@ import when = require('when');
 
 
 const username = "{{Username}}";
-const apikey = "{{apikey}}";
-const projectName = "{{projectname}}";
+const apikey = "{{APIKey}}";
+const projectId = "{{ProjectID}}";
+const projectName = "{{ProjectName}}";
 const revNo = -1; // -1 for latest
 const branchName = null // null for mainline
 const wc = null;
@@ -36,7 +37,7 @@ var totalNumberEntities = 0;
 const wcParams = {
     name: projectName,
     description: "My MPK app",
-    template: "mpk/{{APPMPK}}.mpk"
+    template: "mpk/MPK.mpk"
 };
 
 client.createAndOpenWorkingCopy(wcParams,model =>{
