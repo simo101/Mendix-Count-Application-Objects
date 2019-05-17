@@ -15,13 +15,7 @@ To install the count entities script you should type the command:
 
 This is will install the script and all the relevant dependencies.
 
-Then type:
-
-`tsd install`
-
-This will install all the necessary typings. This will only work if you have installed tsd before hand.
-
-To connect it to your project you need to change the following constants in the `script.ts`
+To connect it to your project you need to change the following constants in the `total-number-objects.ts`
 
 `var username = "{{Username}}";`
 This is your email address used to login to Mendix.
