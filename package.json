@@ -2,7 +2,7 @@
   "name": "Mendix-Count-Application-Objects",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "total-number-objects.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,14 +19,11 @@
   "homepage": "https://github.com/simo101/Mendix-Count-Application-Objects",
   "dependencies": {
     "@types/when": "^2.4.31",
-    "mendixmodelsdk": "^4.11.0",
-    "mendixplatformsdk": "^4.0.0",
-    "when": "^3.7.8",
+    "@types/node": "^12.0.2",
+    "mendixmodelsdk": "^4.20.0",
+    "mendixplatformsdk": "^4.1.0",
     "fs": "^0.0.2",
     "json2xls": "^0.1.2",
     "officegen": "0.4.0"
-  },
-  "devDependencies": {
-    "@types/node": "^10.3.3"
   }
 }

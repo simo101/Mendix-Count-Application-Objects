@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mendixplatformsdk_1 = require("mendixplatformsdk");
-const username = "simon.black@mendix.com";
-const apikey = "5ffffa03-2779-4e02-8feb-d3cc879108f3";
+const username = "{[username}}";
+const apikey = "{{apikey}}";
 var projectId;
 var projectName;
 const revNo = -1; // -1 for latest
@@ -19,15 +19,7 @@ const client = new mendixplatformsdk_1.MendixSdkClient(username, apikey);
 var json2xls = require('json2xls');
 var fs = require('fs');
 let jsonXLS = [];
-var listOfProjects = [{ 'projectName': 'Customer Portal', 'projectID': 'e4d880a6-9ee5-4f6d-bc77-30dbab20cda7' },
-    { 'projectName': 'IoT Logistics', 'projectID': '1b4d254b-b138-4ec4-8f9b-47be490aeff6' },
-    { 'projectName': 'Hospital Dashboard', 'projectID': '3cb55799-4166-4a45-935d-ee7087651204' },
-    { 'projectName': 'Home Care', 'projectID': '2c48c256-b434-4dd0-abe2-75fc38f97c51' },
-    { 'projectName': 'Quote & Buy', 'projectID': '72f620d3-9d67-47df-af1c-2782adedbdec' },
-    { 'projectName': 'SAP IoT Logistics', 'projectID': 'ae0c5939-4677-435e-ad71-8c140cbb3b22' },
-    { 'projectName': 'SAP Purchase Orders', 'projectID': '999fcfd0-7dcf-40f8-b462-adf6335c133e' },
-    { 'projectName': 'Claims Portal', 'projectID': '4047d642-8ab1-4bae-a3e8-acd6fe0c0189' },
-    { 'projectName': 'Smart Tasks', 'projectID': 'fbe23c06-8f7d-4d45-a1de-cd350f63fb9b' }];
+var listOfProjects = [{ 'projectName': '{{ProjectName}}', 'projectID': '[{ProjectID}]' }];
 /*
  * PROJECT TO ANALYZE
  */
