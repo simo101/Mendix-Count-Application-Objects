@@ -57,6 +57,8 @@ async function getProjectCounts(workingCopy:OnlineWorkingCopy,name:String, ID:St
             "Project ID": ID, 
             "Entities":NumberEntities,
             "Microflows":model.allMicroflows().length, 
+            "Nanoflows":model.allNanoflows().length, 
+            "Workflows":model.allWorkflows().length, 
             "Pages": model.allPages().length,            
             "Json Structures": model.allJsonStructures().length,
             "Published OData": model.allPublishedODataServices().length,
@@ -70,6 +72,7 @@ async function getProjectCounts(workingCopy:OnlineWorkingCopy,name:String, ID:St
             "Documents": model.allDocuments().length,
             "Document Templates": model.allDocumentTemplates().length,
             "Java Actions" : model.allJavaActions().length,
+            "JavaScript Actions" : model.allJavaScriptActions().length,
             "Snippets": model.allSnippets().length,
             "Navigation Documents": model.allNavigationDocuments().length    
         };
