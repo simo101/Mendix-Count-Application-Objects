@@ -21,16 +21,13 @@ To connect it to your project you need to change the following constants in the 
 This is your email address used to login to Mendix.
 
 `var apikey = "{{ApiKey}}";`
+API keys can be found in the mendix home portal.
 
 <img src="./images/CreateAPIKey.gif"/>
 
-`var projectId = "{{ProjectId}}";`
+`var listOfProjects: projectUpload[] = [{'projectName':'{{ProjectName}}', 'projectID':'{{ProjectId}}'}]`
 
 <img src="./images/GetProjectID.gif"/>
-
-`var projectName = "{{ProjectName}}";`
-
-API keys can be found in the mendix home portal.
 
 ## Use the Script
 Once the visualiser is installed type:
@@ -38,4 +35,4 @@ Once the visualiser is installed type:
 to compile the script code.
 
 Then after compiled type:
-`node script.js`
+`node total-number-objects.js`

@@ -5,3 +5,4 @@ total-number-objects.js
 script-using-mpk.js
 *nbproject
 .vscode/
+*.xlsx
