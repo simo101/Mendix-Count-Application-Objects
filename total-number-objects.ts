@@ -4,10 +4,8 @@ import { ModelSdkClient, IModel, projects, domainmodels, microflows, pages, navi
 
 import when = require('when');
 
-const username = "{[username}}";
-const apikey = "{{apikey}}";
-var projectId;
-var projectName;
+const username = "{{Username}}";
+const apikey = "{{ApiKey}}";
 const revNo = -1; // -1 for latest
 const branchName = `` // null for mainline
 const client = new MendixSdkClient(username, apikey);
@@ -17,7 +15,7 @@ let jsonXLS: any[]  = [];
 
 type projectUpload ={"projectName":string, "projectID":string};
 var listOfProjects: projectUpload[] =
-[{'projectName':'{{ProjectName}}', 'projectID':'[{ProjectID}]'}]
+[{'projectName':'{{ProjectName}}', 'projectID':'{{ProjectId}}'}]
 
 /*
  * PROJECT TO ANALYZE
