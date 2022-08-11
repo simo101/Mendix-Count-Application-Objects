@@ -1,9 +1,6 @@
 import { MendixPlatformClient, OnlineWorkingCopy } from "mendixplatformsdk";
 import { ModelSdkClient, IModel, projects, domainmodels, microflows, pages, navigation, texts, security, IStructure, menus, Model } from "mendixmodelsdk";
 
-
-const revNo = -1; // -1 for latest
-const branchName = `` // null for mainline
 const client = new MendixPlatformClient();
 var json2xls = require('json2xls');
 var fs = require('fs');
@@ -11,7 +8,7 @@ let jsonXLS: any[]  = [];
 
 type appUpload ={"appName":string, "appID":string};
 var listOfApps: appUpload[] =
-[{'appName':'Livestock Portal ABP', 'appID':'c26ee74d-a9db-4bc7-bc19-0d092f7fb4eb'}]
+[{'appName':'', 'appID':''}]
 
 /*
  * PROJECT TO ANALYZE
