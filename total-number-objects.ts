@@ -1,23 +1,17 @@
-import { MendixSdkClient, OnlineWorkingCopy, Project, Revision, Branch, loadAsPromise } from "mendixplatformsdk";
-import { ModelSdkClient, IModel, projects, domainmodels, microflows, pages, navigation, texts, security, IStructure, menus } from "mendixmodelsdk";
+import { MendixPlatformClient, OnlineWorkingCopy } from "mendixplatformsdk";
+import { ModelSdkClient, IModel, projects, domainmodels, microflows, pages, navigation, texts, security, IStructure, menus, Model } from "mendixmodelsdk";
 
 
-import when = require('when');
-
-const username = "{[username}}";
-const apikey = "{{apikey}}";
-var projectId;
-var projectName;
 const revNo = -1; // -1 for latest
 const branchName = `` // null for mainline
-const client = new MendixSdkClient(username, apikey);
+const client = new MendixPlatformClient();
 var json2xls = require('json2xls');
 var fs = require('fs');
 let jsonXLS: any[]  = [];
 
-type projectUpload ={"projectName":string, "projectID":string};
-var listOfProjects: projectUpload[] =
-[{'projectName':'{{ProjectName}}', 'projectID':'[{ProjectID}]'}]
+type appUpload ={"appName":string, "appID":string};
+var listOfApps: appUpload[] =
+[{'appName':'Livestock Portal ABP', 'appID':'c26ee74d-a9db-4bc7-bc19-0d092f7fb4eb'}]
 
 /*
  * PROJECT TO ANALYZE
@@ -25,8 +19,8 @@ var listOfProjects: projectUpload[] =
 
 
 
-const projectsLoading = Promise.all(listOfProjects.map(async (project) : Promise<any> => {
-        await processProject(project);
+const projectsLoading = Promise.all(listOfApps.map(async (app) : Promise<any> => {
+        await processApp(app);
 })).then(()=>{
         var xls = json2xls(jsonXLS);
         console.log("Writing File")
@@ -35,20 +29,31 @@ const projectsLoading = Promise.all(listOfProjects.map(async (project) : Promise
 
 
 
-async function processProject(project:projectUpload){
-    await loadProject(project);
+async function processApp(app:appUpload){
+    await loadProject(app);
 }
    
-async function loadProject(projectObj:projectUpload){
-    const project = new Project(client, projectObj.projectID, projectObj.projectName);
-    const workingCopy = await client.platform().createOnlineWorkingCopy(project,new Revision(revNo, new Branch(project,branchName)));
-    await getProjectCounts(workingCopy,projectObj.projectName,projectObj.projectID);
+async function loadProject(appObj:appUpload){
+
+    const app = client.getApp(appObj.appID);
+    const repository = app.getRepository();
+    var useBranch:string ="";
+
+        const repositoryInfo = await repository.getInfo();
+        if (repositoryInfo.type === `svn`)
+            useBranch = `trunk`;
+        else
+            useBranch = `main`;
+
+    const wc = await app.createTemporaryWorkingCopy(useBranch);
+    await getProjectCounts(wc,appObj.appName,appObj.appID);
 }
 
 async function getProjectCounts(workingCopy:OnlineWorkingCopy,name:String, ID:String){
         console.log(`Project: ${name} counting`)            
         var NumberEntities = 0;
-        var model = workingCopy.model();
+        
+        var model:IModel = await workingCopy.openModel();
         model.allDomainModels().forEach(domainModel => {
             NumberEntities+= domainModel.entities.length;
         });
