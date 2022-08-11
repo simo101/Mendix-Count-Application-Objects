@@ -1,13 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mendixplatformsdk_1 = require("mendixplatformsdk");
-const revNo = -1; // -1 for latest
-const branchName = ``; // null for mainline
 const client = new mendixplatformsdk_1.MendixPlatformClient();
 var json2xls = require('json2xls');
 var fs = require('fs');
 let jsonXLS = [];
-var listOfApps = [{ 'appName': 'Livestock Portal ABP', 'appID': 'c26ee74d-a9db-4bc7-bc19-0d092f7fb4eb' }];
+var listOfApps = [{ 'appName': '', 'appID': '' }];
 /*
  * PROJECT TO ANALYZE
  */
